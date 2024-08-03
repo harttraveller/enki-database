@@ -58,3 +58,32 @@ def read_resource_chunk(
     buffer.write(response.content)
     buffer.seek(0)
     return buffer.read()
+
+
+def request_content_length_basic(
+    url: str,
+    follow_redirects: bool = True,
+) -> int:
+    """
+    Get the content length of a remote resource.
+
+    This function sends a HEAD request to the specified URL and retrieves
+    the 'Content-Length' header value.
+
+    Args:
+        url (str): The URL of the remote resource.
+        follow_redirects (bool, optional): Whether to follow redirects. Defaults to True.
+
+    Returns:
+        int: The content length of the resource in bytes.
+
+    Raises:
+        KeyError: If the 'Content-Length' header is not found in the response.
+    """
+    response = httpx.head(url, follow_redirects=follow_redirects)
+    response.raise_for_status()
+    headers = {k.lower(): v for k, v in dict(response.headers).items()}
+    if "content-length" not in headers.keys():
+        raise KeyError("'content-length' header not found")
+    else:
+        return int(headers["content-length"])
