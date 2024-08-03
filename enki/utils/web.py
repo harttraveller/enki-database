@@ -1,5 +1,6 @@
 import httpx
 from io import BytesIO
+from pathlib import Path
 
 
 def remote_accepts_byte_range(
@@ -162,3 +163,12 @@ def get_resource_size(url: str) -> int:
             return size
         else:
             raise Exception("cannot estimate remote resource size")
+
+
+def download_resource(
+    url: str,
+    path: str | Path | None = None,
+    allow_overwrite: bool = False,
+    chunk_size: int = 1 << 10,
+    show_progress: bool = False,
+) -> None: ...
