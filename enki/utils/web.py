@@ -172,6 +172,7 @@ def download_resource(
     allow_overwrite: bool = False,
     chunk_size: int = 1 << 10,
     show_progress: bool = False,
+    follow_redirects: bool = True,
 ) -> None:
     if path is None:
         # todo: implement download to current context
@@ -182,4 +183,17 @@ def download_resource(
         raise FileExistsError(str(path))
     size = get_resource_size(url)
     with open(path, "wb") as file:
-        ...
+        with tqdm(
+            total=size,
+            unit_scale=True,
+            unit="B",
+            unit_divisor=chunk_size,
+            disable=not show_progress,
+        ) as bar:
+            with httpx.stream(
+                "GET", url, follow_redirects=follow_redirects
+            ) as response:
+                for chunk in response.iter_bytes(chunk_size):
+                    file.write(chunk)
+                    bar.update(len(chunk))
+    file.close()
