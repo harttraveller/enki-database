@@ -87,3 +87,49 @@ def request_content_length_basic(
         raise KeyError("'content-length' header not found")
     else:
         return int(headers["content-length"])
+
+
+def estimate_content_length_dynamic(
+    url: str,
+    initial_guess: int = 1 << 20,
+    max_requests: int = 10,
+) -> int:
+    """
+    Estimates the content length of a resource by making strategic byte range requests.
+
+    Args:
+        url (str): The URL of the resource.
+        initial_guess (int): Initial guess for the file size in bytes. Default is 1MB.
+        max_requests (int): Maximum number of requests to make before giving up.
+
+    Returns:
+        int: Estimated content length in bytes
+    """
+    with httpx.Client() as httpx_client:
+        lower_bound = 0
+        upper_bound = initial_guess
+        requests_made = 0
+        while requests_made < max_requests:
+            requests_made += 1
+            mid = (lower_bound + upper_bound) // 2
+            headers = {"Range": f"bytes={mid}-{mid}"}
+            response = httpx_client.get(url, headers=headers, follow_redirects=True)
+            if response.status_code == 206:
+                lower_bound = mid
+                if upper_bound == lower_bound + 1:
+                    return upper_bound
+                if "Content-Range" in response.headers:
+                    content_range = response.headers["Content-Range"]
+                    total_size = int(content_range.split("/")[-1])
+                    return total_size
+            elif response.status_code == 416:
+                upper_bound = mid
+            else:
+                raise Exception(
+                    f"Unexpected status code: {response.status_code}",
+                )
+            if upper_bound - lower_bound <= 1:
+                return upper_bound
+            if upper_bound == initial_guess:
+                upper_bound *= 2
+        raise Exception("Cannot estimate remote resource size")
