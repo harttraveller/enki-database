@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "enki-database"
+version = "0.1.0"
+description = "Python wrapper for reduced size english wikidata/wikipedia instance."
+readme = "README.md"
+repository = "https://github.com/harttraveller/enki-database"
+authors = ["Hart Traveller <ruling_fiction.0b@icloud.com>"]
+packages = [{ include = "enki" }]
+
+[tool.poetry.dependencies]
+python = ">3.9.7, <3.13"
+sqlmodel = "^0.0.18"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.4"
+nbformat = "^5.10.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
+
+[tool.poetry.scripts]
+enki = "enki.cli:app"
