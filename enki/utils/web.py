@@ -174,6 +174,27 @@ def download_resource(
     show_progress: bool = False,
     follow_redirects: bool = True,
 ) -> None:
+    """
+    Download a remote resource to a local file.
+
+    This function downloads a resource from a given URL and saves it to a specified local path.
+    It supports progress tracking, overwrite protection, and redirect following.
+
+    Args:
+        url (str): The URL of the remote resource to download.
+        path (str | Path): The local path where the downloaded resource will be saved.
+        allow_overwrite (bool, optional): If True, allows overwriting existing files. Defaults to False.
+        chunk_size (int, optional): The size of chunks to use when downloading. Defaults to 1024 bytes.
+        show_progress (bool, optional): If True, displays a progress bar during download. Defaults to False.
+        follow_redirects (bool, optional): If True, follows HTTP redirects. Defaults to True.
+
+    Raises:
+        FileExistsError: If the target file already exists and allow_overwrite is False.
+        Exception: If there's an error during the download process.
+
+    Returns:
+        None
+    """
     path = Path(path)
     if path.exists() and not allow_overwrite:
         raise FileExistsError(str(path))
