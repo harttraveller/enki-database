@@ -222,6 +222,25 @@ def read_resource(
     show_progress: bool = False,
     follow_redirects: bool = True,
 ) -> bytes:
+    """
+    Read a remote resource and return its content as bytes.
+
+    This function downloads a resource from a given URL and returns its content as bytes.
+    It supports progress tracking and redirect following.
+
+    Args:
+        url (str): The URL of the remote resource to read.
+        chunk_size (int, optional): The size of chunks to use when downloading. Defaults to 1024 bytes.
+        show_progress (bool, optional): If True, displays a progress bar during download. Defaults to False.
+        follow_redirects (bool, optional): If True, follows HTTP redirects. Defaults to True.
+
+    Returns:
+        bytes: The content of the remote resource.
+
+    Raises:
+        Exception: If there's an error during the download process.
+    """
+
     size = get_resource_size(url)
     buffer = BytesIO()
     with tqdm(
