@@ -214,3 +214,28 @@ def download_resource(
                     file.write(chunk)
                     bar.update(len(chunk))
     file.close()
+
+
+def read_resource(
+    url: str,
+    chunk_size: int = 1 << 10,
+    show_progress: bool = False,
+    follow_redirects: bool = True,
+) -> bytes:
+    size = get_resource_size(url)
+    buffer = BytesIO()
+    with tqdm(
+        total=size,
+        unit_scale=True,
+        unit="B",
+        unit_divisor=chunk_size,
+        disable=not show_progress,
+    ) as bar:
+        with httpx.stream("GET", url, follow_redirects=follow_redirects) as response:
+            for chunk in response.iter_bytes(chunk_size):
+                buffer.write(chunk)
+                bar.update(len(chunk))
+    buffer.seek(0)
+    data = buffer.read()
+    buffer.close()
+    return data
