@@ -21,14 +21,14 @@ def test_read_resource_chunk() -> None:
     assert chunk == b"%PDF"
 
 
-# def test_request_content_length_basic() -> None:
-#     length: int = web.request_content_length_basic(test_rsrc)
-#     assert length == 1000
+def test_request_content_length_basic() -> None:
+    length: int = web.request_content_length_basic(test_rsrc)
+    assert length == 8804356
 
 
-# def test_estimate_content_length_dynamic() -> None:
-#     length: int = web.estimate_content_length_dynamic(test_rsrc)
-#     assert length == 1000
+def test_estimate_content_length_dynamic() -> None:
+    length: int = web.estimate_content_length_dynamic(test_rsrc)
+    assert length == 8804356
 
 
 # def test_get_resource_size() -> None:
