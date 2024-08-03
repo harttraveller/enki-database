@@ -133,3 +133,32 @@ def estimate_content_length_dynamic(
             if upper_bound == initial_guess:
                 upper_bound *= 2
         raise Exception("Cannot estimate remote resource size")
+
+
+def get_resource_size(url: str) -> int:
+    """
+    Get the size of a remote resource.
+
+    This function attempts to determine the size of a remote resource using different methods.
+    It first tries to get the content length using a basic request. If that fails, it checks
+    if the server accepts byte range requests. If so, it estimates the content length dynamically.
+
+    Args:
+        url (str): The URL of the remote resource.
+
+    Returns:
+        int: The size of the remote resource in bytes.
+
+    Raises:
+        Exception: If the size of the remote resource cannot be determined.
+    """
+    try:
+        size = request_content_length_basic(url)
+        return size
+    except:
+        range_accepted = remote_accepts_byte_range(url)
+        if range_accepted:
+            size = estimate_content_length_dynamic(url)
+            return size
+        else:
+            raise Exception("cannot estimate remote resource size")
