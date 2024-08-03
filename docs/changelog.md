@@ -2,7 +2,7 @@
 
 ## 0.1.1
 
-<!-- todo: Add web utils for fetching remote resources -->
+- Add web utils for fetching remote resources
 
 ## 0.1.0
 
