@@ -171,4 +171,14 @@ def download_resource(
     allow_overwrite: bool = False,
     chunk_size: int = 1 << 10,
     show_progress: bool = False,
-) -> None: ...
+) -> None:
+    if path is None:
+        # todo: implement download to current context
+        raise NotImplementedError()
+    else:
+        path = Path(path)
+    if path.exists() and not allow_overwrite:
+        raise FileExistsError(str(path))
+    size = get_resource_size(url)
+    with open(path, "wb") as file:
+        ...
