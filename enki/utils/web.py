@@ -168,17 +168,13 @@ def get_resource_size(url: str) -> int:
 
 def download_resource(
     url: str,
-    path: str | Path | None = None,
+    path: str | Path,
     allow_overwrite: bool = False,
     chunk_size: int = 1 << 10,
     show_progress: bool = False,
     follow_redirects: bool = True,
 ) -> None:
-    if path is None:
-        # todo: implement download to current context
-        raise NotImplementedError()
-    else:
-        path = Path(path)
+    path = Path(path)
     if path.exists() and not allow_overwrite:
         raise FileExistsError(str(path))
     size = get_resource_size(url)
