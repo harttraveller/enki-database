@@ -15,10 +15,10 @@ def test_remote_accepts_byte_range() -> None:
     assert web.remote_accepts_byte_range(test_rsrc) == True
 
 
-# def test_read_resource_chunk() -> None:
-#     chunk: bytes = web.read_resource_chunk(test_rsrc, 0, 9)
-#     assert len(chunk) == 10
-#     assert chunk == b"0" * 10
+def test_read_resource_chunk() -> None:
+    chunk: bytes = web.read_resource_chunk(test_rsrc, 0, 3)
+    assert len(chunk) == 4
+    assert chunk == b"%PDF"
 
 
 # def test_request_content_length_basic() -> None:
