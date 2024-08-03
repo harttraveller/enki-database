@@ -1,6 +1,7 @@
 import httpx
 from io import BytesIO
 from pathlib import Path
+from tqdm import tqdm
 
 
 def remote_accepts_byte_range(
