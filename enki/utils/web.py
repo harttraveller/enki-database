@@ -173,6 +173,7 @@ def download_resource(
     chunk_size: int = 1 << 10,
     show_progress: bool = False,
     follow_redirects: bool = True,
+    skip_sizecheck: bool = False,
 ) -> None:
     """
     Download a remote resource to a local file.
@@ -198,7 +199,9 @@ def download_resource(
     path = Path(path)
     if path.exists() and not allow_overwrite:
         raise FileExistsError(str(path))
-    size = get_resource_size(url)
+    size = None
+    if not skip_sizecheck:
+        size = get_resource_size(url)
     with open(path, "wb") as file:
         with tqdm(
             total=size,
@@ -221,6 +224,7 @@ def read_resource(
     chunk_size: int = 1 << 10,
     show_progress: bool = False,
     follow_redirects: bool = True,
+    skip_sizecheck: bool = False,
 ) -> bytes:
     """
     Read a remote resource and return its content as bytes.
@@ -240,8 +244,9 @@ def read_resource(
     Raises:
         Exception: If there's an error during the download process.
     """
-
-    size = get_resource_size(url)
+    size = None
+    if not skip_sizecheck:
+        size = get_resource_size(url)
     buffer = BytesIO()
     with tqdm(
         total=size,
