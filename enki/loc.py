@@ -5,5 +5,8 @@ include = package / ".include"
 
 home = Path.home()
 cache = home / ".enki"
-database = cache / "wiki.db"
 dumps = cache / "dumps"
+for __path in [cache, dumps]:
+    __path.mkdir(exist_ok=True, parents=True)
+
+database = cache / "enwiki.db"
