@@ -19,5 +19,5 @@ def callback(ctx: typer.Context):
 
 @app.command()
 def docs():
-    """Open the docs site in your default webbrowser."""
+    """Open the docs site in your default web browser."""
     webbrowser.open(__docs__)
