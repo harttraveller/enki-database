@@ -18,4 +18,5 @@ def callback():
 
 @app.command()
 def docs():
+    """Open the docs site in your default webbrowser."""
     webbrowser.open(__docs__)
