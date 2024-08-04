@@ -1,5 +1,6 @@
-import importlib
+from importlib import metadata
 
+__module__ = __name__ = "enki"
 __package__ = "enki-database"
-__name__ = __module__ = "enki"
-__version__ = importlib.metadata.version(__name__)
+__version__ = metadata.version(__package__)
+__docs__ = "https://www.harttraveller.com/enki-database"
