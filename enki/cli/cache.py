@@ -6,7 +6,9 @@ app = typer.Typer()
 
 @app.callback(name="cache", invoke_without_command=True)
 def callback(ctx: typer.Context):
-    """Show the path and tree of contents"""
+    """
+    Show the path and tree of contents.
+    """
     ...
 
 
