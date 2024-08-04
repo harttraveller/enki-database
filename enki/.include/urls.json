@@ -7,5 +7,5 @@
         "latest-truthy.json.bz2": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-truthy.json.bz2",
         "latest-truthy.json.gz": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-truthy.json.gz"
     },
-    "wikipediaa": {}
+    "wikipedia": {}
 }
