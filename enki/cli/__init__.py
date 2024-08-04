@@ -9,5 +9,7 @@ app = typer.Typer()
 @app.callback(name="enki", invoke_without_command=True)
 def callback():
     cooltext(__module__)
-    print(f"[cyan]Version:[/cyan] [lightgreen]{__version__}[/lightgreen]")
+    print(
+        f"[deep_sky_blue1]Version:[/deep_sky_blue1] [turquoise2]{__version__}[/turquoise2]"
+    )
     # todo: add printout for where cache and whether dumps/minidb dled
