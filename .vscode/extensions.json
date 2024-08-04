@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "aaron-bond.better-comments",
+        "ms-python.black-formatter",
+        "usernamehw.errorlens",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "rodolphebarbanneau.python-docstring-highlighter",
+        "kevinrose.vsc-python-indent",
+        "njqdev.vscode-python-typehint",
+        "yy0931.vscode-sqlite3-editor"
+    ]
+}
