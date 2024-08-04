@@ -1,13 +1,13 @@
 import typer
 import webbrowser
 from rich import print
-from enki.__meta__ import __package__, __module__, __version__, __docs__
+from enki.__meta__ import __module__, __version__, __docs__
 from pycooltext import cooltext
 
 app = typer.Typer()
 
 
-@app.callback(name="enki", invoke_without_command=True)
+@app.callback(name=__module__, invoke_without_command=True)
 def callback(ctx: typer.Context):
     if ctx.invoked_subcommand is None:
         cooltext(__module__)
