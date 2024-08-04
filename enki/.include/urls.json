@@ -1,11 +1,14 @@
 {
-    "wikidata": {
-        "latest-all.json.bz2": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-all.json.bz2",
-        "latest-all.json.gz": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-all.json.gz",
-        "latest-lexemes.json.bz2": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-lexemes.json.bz2",
-        "latest-lexemes.json.gz": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-lexemes.json.gz",
-        "latest-truthy.json.bz2": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-truthy.json.bz2",
-        "latest-truthy.json.gz": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-truthy.json.gz"
-    },
-    "wikipedia": {}
+    "mini": "todo: add huggingface link here later",
+    "dump": {
+        "wikidata": {
+            "latest-all.json.bz2": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-all.json.bz2",
+            "latest-all.json.gz": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-all.json.gz",
+            "latest-lexemes.json.bz2": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-lexemes.json.bz2",
+            "latest-lexemes.json.gz": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-lexemes.json.gz",
+            "latest-truthy.json.bz2": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-truthy.json.bz2",
+            "latest-truthy.json.gz": "https://dumps.wikimedia.org/wikidatawiki/entities/latest-truthy.json.gz"
+        },
+        "wikipedia": {}
+    }
 }
